@@ -7,7 +7,6 @@ import peaksoft.restapijava14.dto.StudentRequest;
 import peaksoft.restapijava14.dto.StudentResponse;
 import peaksoft.restapijava14.dto.StudentResponseGet;
 import peaksoft.restapijava14.entity.Student;
-import peaksoft.restapijava14.repository.StudentRepository;
 import peaksoft.restapijava14.service.StudentService;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class StudentApi {
     }
 
     @GetMapping("/{id}")
-    public StudentResponseGet getStudentById(@PathVariable Long id){
+    public StudentResponse getStudentById(@PathVariable Long id){
         return studentService.getStudentById(id);
     }
 
@@ -35,12 +34,12 @@ public class StudentApi {
     }
 
     @DeleteMapping()
-    public void deleteStudentById(@RequestParam Long id){
-        studentService.deleteStudentById(id);
+    public SimpleResponse deleteStudentById(@RequestParam Long id){
+        return studentService.deleteStudentById(id);
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody Student student){
+    public SimpleResponse updateStudent(@PathVariable Long id, @RequestBody Student student){
         return studentService.updateStudent(id,student);
     }
 

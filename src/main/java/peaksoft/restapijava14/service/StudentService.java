@@ -10,9 +10,14 @@ import java.util.List;
 
 public interface StudentService {
     SimpleResponse saveStudent(StudentRequest studentRequest);
-    StudentResponseGet getStudentById(Long id);
+
+    StudentResponse getStudentById(Long id);
+
     List<StudentResponseGet> getAllStudents();
-    void deleteStudentById(Long id);
-    Student updateStudent(Long id,Student student);
+
+    SimpleResponse deleteStudentById(Long id);
+
+    SimpleResponse updateStudent(Long id, Student student);
+
     Student getStudentByEmail(String email);
 }

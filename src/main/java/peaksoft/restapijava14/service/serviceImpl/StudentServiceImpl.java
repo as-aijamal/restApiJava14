@@ -35,19 +35,12 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(student);
         return new SimpleResponse(
                 HttpStatus.OK,
-                "Student with id "+student.getId()+" is saved!"
+                "Student with id " + student.getId() + " is saved!"
         );
-//        return new StudentResponse(
-//                student.getFirstName(),
-//                student.getLastName(),
-//                student.getEmail(),
-//                student.getAge(),
-//                student.getCreatedDate()
-//        );
     }
 
     @Override
-    public StudentResponseGet getStudentById(Long id) {
+    public StudentResponse getStudentById(Long id) {
         return studentRepository.getStudentById(id).orElseThrow(
                 () -> new NoSuchElementException(
                         String.format("Student with id %s not found", id)
@@ -61,23 +54,35 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudentById(Long id) {
+    public SimpleResponse deleteStudentById(Long id) {
         if (!studentRepository.existsById(id)) {
             throw new NoSuchElementException(
                     String.format("Student with id %s not found", id));
         }
         studentRepository.deleteById(id);
+        return SimpleResponse.builder()
+                .httpStatus(HttpStatus.OK)
+                .message("Student with id " + id + " was deleted")
+                .build();
     }
 
+
     @Override
-    public Student updateStudent(Long id, Student student) {
-//        Student oldStudent = getStudentById(id);
-//        oldStudent.setFirstName(student.getFirstName());
-//        oldStudent.setLastName(student.getLastName());
-//        oldStudent.setEmail(student.getEmail());
-//        oldStudent.setAge(student.getAge());
-//        studentRepository.save(oldStudent);
-        return null;
+    public SimpleResponse updateStudent(Long id, Student student) {
+        Student oldStudent = studentRepository.findById(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        String.format("Student with id %s not found", id)
+                )
+        );
+        oldStudent.setFirstName(student.getFirstName());
+        oldStudent.setLastName(student.getLastName());
+        oldStudent.setEmail(student.getEmail());
+        oldStudent.setAge(student.getAge());
+        studentRepository.save(oldStudent);
+        return new SimpleResponse(
+                HttpStatus.OK,
+                "Student with id " + oldStudent.getId() + " is updated!"
+        );
     }
 
     @Override
