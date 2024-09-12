@@ -19,8 +19,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             "(concat(s.firstName,' ',s.lastName) ,s.email,s.age,s.createdDate) from Student s")
     List<StudentResponseGet>findAllStudents();
 
-    @Query("select new peaksoft.restapijava14.dto.StudentResponseGet " +
-            "(concat(s.firstName,' ',s.lastName),s.email,s.age,s.createdDate) from Student s where s.id=:id")
+    @Query("select new peaksoft.restapijava14.dto.StudentResponse" +
+            "(s.firstName,s.lastName,s.email,s.age,s.createdDate) from Student s where s.id=:id")
     Optional<StudentResponse> getStudentById(Long id);
 
     Optional<Student> findById(Long id);

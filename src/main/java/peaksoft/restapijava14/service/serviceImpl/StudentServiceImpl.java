@@ -9,6 +9,7 @@ import peaksoft.restapijava14.dto.StudentRequest;
 import peaksoft.restapijava14.dto.StudentResponse;
 import peaksoft.restapijava14.dto.StudentResponseGet;
 import peaksoft.restapijava14.entity.Student;
+import peaksoft.restapijava14.entity.User;
 import peaksoft.restapijava14.repository.StudentRepository;
 import peaksoft.restapijava14.service.StudentService;
 
