@@ -11,5 +11,6 @@ public class StudentRequest {
     private String lastName;
     private String email;
     private int age;
+    private String password;
 
 }

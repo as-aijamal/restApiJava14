@@ -1,11 +1,10 @@
 package peaksoft.restapijava14.api;
 
+import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import peaksoft.restapijava14.dto.AuthenticationResponse;
+import peaksoft.restapijava14.dto.ProfileResponse;
 import peaksoft.restapijava14.dto.SignInRequest;
 import peaksoft.restapijava14.dto.SignUpRequest;
 import peaksoft.restapijava14.service.AuthenticationService;
@@ -25,6 +24,12 @@ public class AuthenticationApi {
     @PostMapping("/signIn")
     AuthenticationResponse signIn(@RequestBody SignInRequest signInRequest){
         return authenticationService.signIn(signInRequest);
+    }
+
+    @GetMapping
+    @PermitAll
+    ProfileResponse getProfile(){
+        return authenticationService.getProfile();
     }
 
 }

@@ -17,7 +17,7 @@ public interface StudentService {
 
     SimpleResponse deleteStudentById(Long id);
 
-    SimpleResponse updateStudent(Long id, Student student);
+    SimpleResponse updateStudent(Long id, StudentRequest studentRequest);
 
     Student getStudentByEmail(String email);
 }

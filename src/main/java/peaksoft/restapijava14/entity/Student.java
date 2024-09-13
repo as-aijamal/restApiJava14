@@ -26,10 +26,12 @@ public class Student {
             allocationSize = 1
     )
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
     private int age;
     private LocalDate createdDate;
     private boolean isBlocked;
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Group group;
+    @OneToOne
+    private User user;
 }

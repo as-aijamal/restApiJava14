@@ -48,9 +48,10 @@ public class StudentApi {
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public SimpleResponse updateStudent(@PathVariable Long id, @RequestBody Student student){
-        return studentService.updateStudent(id,student);
+//    @PreAuthorize("hasAuthority('ADMIN')")
+    @PermitAll
+    public SimpleResponse updateStudent(@PathVariable Long id, @RequestBody StudentRequest  studentRequest){
+        return studentService.updateStudent(id,studentRequest);
     }
 
     @GetMapping("/getByEmail")

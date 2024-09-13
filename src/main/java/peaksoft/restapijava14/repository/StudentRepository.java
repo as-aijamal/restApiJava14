@@ -13,18 +13,18 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
+    @Query("select s from Student s join s.user u where u.email=:email")
     Student findByEmail(String email);
 
     @Query("select new peaksoft.restapijava14.dto.StudentResponseGet " +
-            "(concat(s.firstName,' ',s.lastName) ,s.email,s.age,s.createdDate) from Student s")
-    List<StudentResponseGet>findAllStudents();
+            "(concat(u.firstName,' ',u.lastName) ,u.email,s.age,s.createdDate) from Student s join s.user u ")
+    List<StudentResponseGet> findAllStudents();
 
     @Query("select new peaksoft.restapijava14.dto.StudentResponse" +
-            "(s.firstName,s.lastName,s.email,s.age,s.createdDate) from Student s where s.id=:id")
+            "(u.firstName,u.lastName,u.email,s.age,s.createdDate) from Student s join s.user u where s.id=:id")
     Optional<StudentResponse> getStudentById(Long id);
 
     Optional<Student> findById(Long id);
-
 
 
 }

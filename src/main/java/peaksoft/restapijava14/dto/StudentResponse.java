@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 public class StudentResponse {
 
     private String firstName;
@@ -18,5 +17,11 @@ public class StudentResponse {
     private int age;
     private LocalDate createdDate;
 
-
+    public StudentResponse(String firstName, String lastName, String email, int age, LocalDate createdDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.createdDate = createdDate;
+    }
 }
